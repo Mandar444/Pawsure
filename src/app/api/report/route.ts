@@ -6,12 +6,14 @@ import { createClient } from "@supabase/supabase-js";
 //import { notifyNgo, notifyTeamFallback } from "@/lib/notify";
 import { notifyNgo, notifyTeamFallback, notifyReportReceived } from "@/lib/notify";
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-);
+function getSupabase() {
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL || "https://placeholder.supabase.co";
+  const key = process.env.SUPABASE_SERVICE_ROLE_KEY || "placeholder-key";
+  return createClient(url, key);
+}
 
 export async function POST(req: NextRequest) {
+  const supabase = getSupabase();
   // 1. Read the multipart form (NOT req.json — the form sends form-data with a file)
   const form = await req.formData();
   const photo = form.get("photo") as File | null;

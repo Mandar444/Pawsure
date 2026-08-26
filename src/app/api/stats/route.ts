@@ -5,8 +5,11 @@ import { createClient } from "@supabase/supabase-js";
 
 export const revalidate = 300;
 
-const getSupabase = () =>
-  createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.SUPABASE_SERVICE_ROLE_KEY!);
+const getSupabase = () => {
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL || "https://placeholder.supabase.co";
+  const key = process.env.SUPABASE_SERVICE_ROLE_KEY || "placeholder-key";
+  return createClient(url, key);
+};
 
 export async function GET() {
   const supabase = getSupabase();
