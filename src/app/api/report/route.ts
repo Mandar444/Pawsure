@@ -6,6 +6,8 @@ import { createClient } from "@supabase/supabase-js";
 //import { notifyNgo, notifyTeamFallback } from "@/lib/notify";
 import { notifyNgo, notifyTeamFallback, notifyReportReceived } from "@/lib/notify";
 
+export const dynamic = "force-dynamic";
+
 function getSupabase() {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL || "https://placeholder.supabase.co";
   const key = process.env.SUPABASE_SERVICE_ROLE_KEY || "placeholder-key";

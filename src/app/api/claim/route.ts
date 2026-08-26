@@ -6,6 +6,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 import { notifyReporter } from "@/lib/notify";
 
+export const dynamic = "force-dynamic";
+
 function ngoName(n: unknown): string | null {
   if (!n) return null;
   const o = Array.isArray(n) ? n[0] : n;
